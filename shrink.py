@@ -33,7 +33,7 @@ with open("data/processed/" + shrunk_file_name, 'wb') as out_file:
     projects = []
     for cnt, line in enumerate(f):
       project = json.loads(line)
-      if project['data']['country'] != 'US' or ('location' in project['data'] and project['data']['location']['country'] != 'US') or project['data']['currency'] != 'USD' or project['data']['current_currency'] != 'USD':
+      if project['data']['country'] != 'US' or ('location' in project['data'] and project['data']['location']['country'] != 'US') or project['data']['currency'] != 'USD' or project['data']['current_currency'] != 'USD' or project['data']['state'] not in ['failed', 'successful']:
         continue
       projects.append(project)
 
