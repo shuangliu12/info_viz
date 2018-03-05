@@ -2,8 +2,8 @@ import json
 import time
 
 start_time = time.time()
-file_name = "data/Kickstarter_2018-01-12T10_20_09_196Z.json"
-# file_name = "data/Kickstarter_2018-01-12T10_20_09_196Z-tiny.json"
+file_name = "data/original/Kickstarter_2018-01-12T10_20_09_196Z.json"
+# file_name = "data/original/Kickstarter_2018-01-12T10_20_09_196Z-tiny.json"
 
 country_count = {}
 currency_count = {}
