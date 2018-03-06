@@ -16,7 +16,7 @@ shrunk_file_name = file_name
 if number_of_rows >= 0:
   shrunk_file_name += "-" + str(number_of_rows)
 shrunk_file_name += ".csv"
-columns = ["id", "pledged", "goal", "backers_count", "state", "spotlight", "staff_pick", "is_starrable", "disable_communication", "created_at", "launched_at", "state_changed_at", "deadline", ['category', 'id'], ['category', 'name'], ['creator', 'id'], ['location', 'id'], ['location', 'state'], "name", "blurb", "slug"]
+columns = ["id", "pledged", "goal", "backers_count", "state", "spotlight", "staff_pick", "is_starrable", "disable_communication", "created_at", "launched_at", "state_changed_at", "deadline", "launched_to_deadline_days", ['category', 'id'], ['category', 'name'], ['creator', 'id'], ['location', 'id'], ['location', 'state'], "name", "blurb", "slug"]
 columns_with_null = {}
 with open("data/processed/" + shrunk_file_name, 'wb') as out_file:
   wh = csv.writer(out_file, quoting=csv.QUOTE_NONE)
@@ -55,6 +55,8 @@ with open("data/processed/" + shrunk_file_name, 'wb') as out_file:
           if type(column) is list:
             column_name = '_'.join(column)
             row_data = project['data'][column[0]][column[1]]
+          elif column_name == 'launched_to_deadline_days':
+            row_data = (project['data']['deadline'] - project['data']['launched_at']) / 86400.0
           else:
             row_data = project['data'][column]
 
